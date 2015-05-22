@@ -1,0 +1,12 @@
+README
+
+As of this writing there is (was? :)) no pure way of interfacing Reachability from Swift.
+
+I wrote a simple bridge to enable this since all other implementations seemed to rely on polling.
+
+1) Add a bridging header to your project: https://developer.apple.com/library/ios/documentation/Swift/Conceptual/BuildingCocoaApps/MixandMatch.html
+2) Add SwiftReachability.h to your bridging header.
+3) myCallback:ReachabilityCallbackClosure={( target: SCNetworkReachability! , flags: SCNetworkReachabilityFlags ) -> Void in ... }
+4) setupReachability(host:String, callback: ReachabilityCallbackClosure );
+setupReachability("www.apple.com",myCallback)
+5) Add a "return" at end of myCallback to ensure return type matches "void" 
